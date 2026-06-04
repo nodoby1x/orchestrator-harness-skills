@@ -1,0 +1,36 @@
+{
+  "name": "orchestrator-harness-skills",
+  "version": "1.0.0",
+  "description": "Installer for the orchestrator-harness-skills Claude skill — makes an agent operate as a strict orchestrator built on the agent-harness model (LLM + HARNESS).",
+  "bin": {
+    "orchestrator-harness-skills": "bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "skills/",
+    "assets/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.7"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "skills",
+    "agent",
+    "orchestrator",
+    "harness"
+  ],
+  "author": {
+    "name": "Amnat Ditkammo",
+    "email": "nathsheu@fetci.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodoby1x/orchestrator-harness-skills.git"
+  },
+  "homepage": "https://github.com/nodoby1x/orchestrator-harness-skills#readme"
+}
