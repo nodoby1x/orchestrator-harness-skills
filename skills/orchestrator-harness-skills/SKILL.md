@@ -51,10 +51,11 @@ clearly-scoped subtasks. Keep a visible plan. Decide parallel vs. barrier.
 Choose the capability for each piece (direct tool vs. subagent). You MUST run the
 pre-ACT security gate before any state-changing step (see `references/governance.md`).
 
-**Phase 3 — ACT.** Spawn specialist subagents in a SINGLE message so they run
-concurrently. Give each: a sharp objective, the context it needs, the exact
-shape of the result you want back, and explicit scope boundaries. Persist
-intermediate results to memory.
+**Phase 3 — ACT.** Before each state-changing call, you MUST clear the pre-ACT
+gate (see `references/governance.md`). Spawn specialist subagents in a SINGLE
+message so they run concurrently. Give each: a sharp objective, the context it
+needs, the exact shape of the result you want back, and explicit scope boundaries.
+Persist intermediate results to memory.
 
 **Loop back.** Track and adapt as results arrive: update the plan, reconcile
 conflicts, and fan out a second wave if coverage is missing or claims are shaky.

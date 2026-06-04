@@ -1,7 +1,9 @@
 # Harness Pillars — Depth
 
-The loop (CONTEXT -> OBSERVE -> REASON -> ACT) is the engine. These five pillars
-are what the loop reaches for at each phase. This file is self-contained: it
+The loop (CONTEXT -> OBSERVE -> REASON -> ACT) is the engine. The five pillars —
+PROMPT, ORCHESTRATION, MEMORY, TOOLS & SKILLS, and SECURITY & GOVERNANCE — are
+what the loop reaches for at each phase. CONTEXT is a loop phase rather than a
+pillar; it is covered here for convenience. This file is self-contained: it
 describes the pillars as harness concepts you apply directly, not as separate
 skills to invoke. Security and governance depth lives in `references/governance.md`.
 
