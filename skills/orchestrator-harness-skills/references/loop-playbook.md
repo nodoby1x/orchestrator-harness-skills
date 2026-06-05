@@ -49,6 +49,18 @@ shape + boundaries; persist intermediate results.
 Update the plan, reconcile conflicts, fan out a second wave for missing coverage
 or shaky claims. Return to CONTEXT until the goal is met.
 
+- **Wave budget — stop and deliver.** Set an explicit iteration/wave budget up
+  front. If you reach it without meeting the success test, STOP — deliver a
+  best-effort result with an honest accounting of what remains. Never loop
+  indefinitely chasing an unbounded goal.
+- **When a subagent or tool call fails, returns empty, or times out:**
+  1. **Classify.** Transient (timeout, flaky tool, network) vs. structural (wrong
+     approach, missing capability, impossible scope).
+  2. **If transient,** retry once with a tightened brief.
+  3. **If structural,** re-scope the subtask or escalate/surface it to the human.
+  4. **Never silently drop it.** Record any unrecovered failure as a disclosed gap
+     in the final accounting.
+
 ## Delegation patterns
 
 - **Single-wave fan-out.** N independent subtasks, one message, no barrier. The
@@ -81,4 +93,8 @@ If any check fails, run another pass — do not exit.
   list, one table), not a stack of per-subagent sections.
 - **Carry the gaps forward.** State skips, caps, and unverified items plainly in
   the final answer — honest accounting is part of the deliverable.
+- **Why distill works.** Each subagent ran in its own isolated context window and
+  handed back only a distilled result — the deep detail stayed quarantined there,
+  off your reasoning thread. Distilling protects that quality; dumping the raw
+  transcripts would undo it.
 - **One voice.** However many agents ran, the user gets one coherent response.

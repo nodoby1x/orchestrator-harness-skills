@@ -34,6 +34,12 @@ A weak frame produces confident work on the wrong target. Frame first.
   3. **Result shape** — the exact form you want back (a list, a verdict, a diff,
      a table). Name it so synthesis is mechanical.
   4. **Boundaries** — explicit scope limits so it does not expand the task.
+- **Size the fan-out to the work.** Match the number of subagents to task
+  complexity: ~1 for a simple lookup or fact-find, 2–4 for a comparison, more (up
+  to ~10+) only for genuinely broad, parallelizable work. Do NOT over-spawn on
+  simple goals — parallel fan-out has real token cost (a multi-agent fan-out can
+  cost many times a single pass). Spawn the fewest subagents that cover the
+  independent seams.
 - **Single-message parallel fan-out.** Launch all independent subagents in ONE
   message so they execute concurrently. Sequential launches forfeit the speedup.
 - **Continue-a-subagent vs. spawn-fresh.** To extend work with its context intact,
@@ -51,14 +57,26 @@ A weak frame produces confident work on the wrong target. Frame first.
   points, scope the diff); push the deep reads into delegated subtasks.
 - **No silent truncation.** If you bound coverage — top-N, sampled, skipped a
   module — record it. A silent cap reads as "covered everything" when it did not.
+- **Compaction.** When context grows large or nears the window limit, distill the
+  working thread — goal, plan status, verified findings, open gaps — into a compact
+  summary and continue from it. Clear stale raw tool and subagent outputs first.
+  Lean on MEMORY as the durable backing store so nothing important is lost.
 
 ## MEMORY — persist state
 
 - **What to persist:** the framed goal, the plan with current status, verified
   findings, and open gaps. Do NOT persist raw subagent transcripts — distill first.
+- **Keep a concrete status artifact.** Maintain a living plan/status record with
+  per-subtask status (pending / done / failed), verified findings, and open gaps.
+  Update it as results land; read it at the start of each pass so a resumed pass
+  recovers the thread without re-deriving it.
 - **When to read:** at CONTEXT, at the start of each pass.
 - **When to write:** at ACT, as intermediate results land, so a later pass or a
   resumed session can recover the thread without re-deriving it.
+- **Why distill, not dump.** Delegation is not only for parallelism: each subagent
+  works in its own isolated context window and returns only a distilled result.
+  That quarantines deep detail away from the orchestrator and protects its
+  reasoning quality — which is why you distill what comes back, never dump it.
 
 ## TOOLS & SKILLS — choose & invoke capabilities
 

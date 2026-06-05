@@ -58,21 +58,19 @@ CONTEXT  ->  OBSERVE  ->  REASON  ->  ACT  ->  (back to CONTEXT)
 
 Requires Node.js >= 16.7.
 
-There are two npx forms depending on where the package lives at the time you run it.
+Two equivalent forms — pick whichever is more convenient.
 
-**From GitHub (no npm account needed — works once the repo has been pushed):**
-
-```
-npx github:nodoby1x/orchestrator-harness-skills
-```
-
-**From the npm registry (works only after the maintainer has run `npm publish`, and only if the name `orchestrator-harness-skills` is available on the registry — otherwise it must be scoped, e.g. `@username/orchestrator-harness-skills`):**
+**From the npm registry (published and live):**
 
 ```
 npx orchestrator-harness-skills
 ```
 
-Neither form will work until the corresponding prerequisite is met (repo pushed / package published).
+**From GitHub (no npm account needed):**
+
+```
+npx github:nodoby1x/orchestrator-harness-skills
+```
 
 **What the installer does:**
 

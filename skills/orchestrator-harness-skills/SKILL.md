@@ -48,18 +48,26 @@ them against the plan. You MUST NOT silently truncate — record every coverage 
 
 **Phase 2 — REASON.** Decompose into the smallest set of independent,
 clearly-scoped subtasks. Keep a visible plan. Decide parallel vs. barrier.
-Choose the capability for each piece (direct tool vs. subagent). You MUST run the
-pre-ACT security gate before any state-changing step (see `references/governance.md`).
+Choose the capability for each piece (direct tool vs. subagent). Size the fan-out
+to the work — one subagent for a simple lookup, a few for comparisons, more only
+for genuinely broad parallel work; do not over-spawn, parallelism has real cost.
+You MUST run the pre-ACT security gate before any state-changing step (see
+`references/governance.md`).
 
 **Phase 3 — ACT.** Before each state-changing call, you MUST clear the pre-ACT
 gate (see `references/governance.md`). Spawn specialist subagents in a SINGLE
 message so they run concurrently. Give each: a sharp objective, the context it
 needs, the exact shape of the result you want back, and explicit scope boundaries.
-Persist intermediate results to memory.
+Persist intermediate results to memory. If a subagent or tool call fails or
+returns empty, classify it transient vs. structural — retry once if transient,
+re-scope or escalate if structural — and record any unrecovered failure as a
+disclosed gap; never drop it silently.
 
 **Loop back.** Track and adapt as results arrive: update the plan, reconcile
 conflicts, and fan out a second wave if coverage is missing or claims are shaky.
-Return to CONTEXT until the goal is met.
+Return to CONTEXT until the goal is met. Set an explicit iteration/wave budget up
+front; if you reach it without meeting the success test, you MUST stop and deliver
+a best-effort result with an honest accounting of what remains — never loop indefinitely.
 
 **Exit.** Verify before done: check claims against the source — a passing
 self-narrative is NOT evidence. Synthesize ONE answer. Give an honest accounting
