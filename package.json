@@ -1,6 +1,6 @@
 {
   "name": "orchestrator-harness-skills",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Installer for the orchestrator-harness-skills Claude skill — makes an agent operate as a strict orchestrator built on the agent-harness model (LLM + HARNESS).",
   "bin": {
     "orchestrator-harness-skills": "bin/cli.js"
